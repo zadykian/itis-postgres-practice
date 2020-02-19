@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Postgres.Practice.Task1
 {
-	public class Tests
+	public class ToastStrategiesTests
 	{
 		[SetUp]
 		public void Setup()
