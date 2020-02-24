@@ -24,7 +24,7 @@ do
 		set storage $toast_strategy;
 	sql
 	
-	# build SQL-script to insert 100 random string values of length 3072.
+	# build and execute SQL-script to insert 100 random string values of length 3072.
 	string_value_length=3072
 	rows_count=100
 	
