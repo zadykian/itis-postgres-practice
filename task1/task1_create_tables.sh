@@ -25,16 +25,25 @@ do
 	sql
 	
 	# build SQL-script to insert 100 random string values of length 3072.
-	#let insert_command = 'insert into $table_name ($column_name) values'
-	#for i in {1..100};
-	#do
-	#	random_string = cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 3072 | head -n 1
-	#	insert_command = $'$insert_command ('"'"'$random_string'"'"')'
-	#done
-	#insert_command = '$insert_command;'
-	#echo $insert_command
+	string_value_length=3072
+	rows_count=100
 	
-	#psql -U postgres -c $insert_command
+	insert_command="insert into ${table_name} (${column_name}) values"
+	for i in $(seq 1 $rows_count);
+	do
+		random_string=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $string_value_length | head -n 1)
+		insert_command="${insert_command} ('${random_string}')"
+		
+		if [ $i != $rows_count ];
+		then
+			insert_command="${insert_command},"
+		fi
+	done
+	insert_command="${insert_command};"
+	
+	psql -U postgres <<-sql 
+		$insert_command 
+	sql
 done
 
 exit 0
