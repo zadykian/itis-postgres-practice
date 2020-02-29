@@ -10,14 +10,14 @@ function generateRandomString()
 	fi
 
 	randomStringLength=3072
-	return $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1)
+	echo $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1)
 }
 
 # Function to build and execute SQL-script 
 # to insert 100 random string values of length 3072.
 function insertRandomStrings()
 {
-	if [ $# != 3];
+	if [ $# != 2 ];
 	then
 		echo 'Invalid arguments count'
 		exit 1
