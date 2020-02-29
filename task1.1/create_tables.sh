@@ -9,7 +9,7 @@ function generateRandomString()
 		exit 1
 	fi
 
-	randomStringLength=$1
+	local randomStringLength=$1
 	echo $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1)
 }
 
@@ -23,14 +23,14 @@ function insertRandomStrings()
 		exit 1
 	fi
 
-	tableName=$1
-	columnName=$2
-	rowsCount=100
+	local tableName=$1
+	local columnName=$2
+	local rowsCount=100
 	
-	insertCommand="insert into ${tableName} (${columnName}) values"
+	local insertCommand="insert into ${tableName} (${columnName}) values"
 	for i in $(seq 1 $rowsCount);
 	do
-		randomString=$(generateRandomString 3072)
+		local randomString=$(generateRandomString 3072)
 		insertCommand="${insertCommand} ('${randomString}')"
 		
 		if [ $i != $rowsCount ];
