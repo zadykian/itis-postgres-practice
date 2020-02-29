@@ -1,49 +1,77 @@
 #!/bin/bash
-schema_name='advanced_rds_task1'
+
+# Function to generate random string of length '$1'
+function generateRandomString()
+{
+	if [ $# != 2 ]; 
+	then
+		echo 'Invalid arguments count'
+		exit 1
+	fi
+
+	randomStringLength=$1
+	return $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1)
+}
+
+# Function to build and execute SQL-script 
+# to insert 100 random string values of length 3072.
+function insertRandomStrings()
+{
+	if [ $# != 3];
+	then
+		echo 'Invalid arguments count'
+		exit 1
+	fi
+
+	tableName=$1
+	columnName=$2
+	stringValueLength=3072
+	rowsCount=100
+	
+	insertCommand="insert into ${tableName} (${columnName}) values"
+	for i in $(seq 1 $rowsCount);
+	do
+		randomString=$(generateRandomString $stringValueLength)
+		insertCommand="${insertCommand} ('${randomString}')"
+		
+		if [ $i != $rowsCount ];
+		then
+			insertCommand="${insertCommand},"
+		fi
+	done
+	insertCommand="${insertCommand};"
+	
+	psql -U postgres <<-sql 
+		$insertCommand 
+	sql
+}
+
+schemaName='advanced_rds_task1'
 
 # recreate schema for test tables
 psql -U postgres <<sql
-	drop schema if exists $schema_name cascade; 
-	create schema $schema_name;
+	drop schema if exists $schemaName cascade; 
+	create schema $schemaName;
 sql
 
 # create table for each TOAST strategy
-for toast_strategy in 'plain' 'extended' 'external' 'main';
+for toastStrategy in 'plain' 'extended' 'external' 'main';
 do
-	table_name="${schema_name}.${toast_strategy}_table"
-	column_name='text_column'
+	tableName="${schemaName}.${toastStrategy}_table"
+	columnName='text_column'
 
 	psql -U postgres <<-sql
-		create table $table_name 
+		create table $tableName 
 		(
-			$column_name varchar(4096) 
+			$columnName varchar(4096) 
 		);
 		
-		alter table $table_name 
-		alter column $column_name 
-		set storage $toast_strategy;
+		alter table $tableName 
+		alter column $columnName 
+		set storage $toastStrategy;
 	sql
 	
-	# build and execute SQL-script to insert 100 random string values of length 3072.
-	string_value_length=3072
-	rows_count=100
-	
-	insert_command="insert into ${table_name} (${column_name}) values"
-	for i in $(seq 1 $rows_count);
-	do
-		random_string=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $string_value_length | head -n 1)
-		insert_command="${insert_command} ('${random_string}')"
-		
-		if [ $i != $rows_count ];
-		then
-			insert_command="${insert_command},"
-		fi
-	done
-	insert_command="${insert_command};"
-	
-	psql -U postgres <<-sql 
-		$insert_command 
-	sql
+	insertRandomStrings $tableName $columnName
 done
 
 exit 0
