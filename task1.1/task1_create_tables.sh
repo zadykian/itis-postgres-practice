@@ -3,13 +3,13 @@
 # Function to generate random string of length '$1'
 function generateRandomString()
 {
-	if [ $# != 2 ]; 
+	if [ $# != 0 ]; 
 	then
 		echo 'Invalid arguments count'
 		exit 1
 	fi
 
-	randomStringLength=$1
+	randomStringLength=3072
 	return $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1)
 }
 
@@ -25,13 +25,12 @@ function insertRandomStrings()
 
 	tableName=$1
 	columnName=$2
-	stringValueLength=3072
 	rowsCount=100
 	
 	insertCommand="insert into ${tableName} (${columnName}) values"
 	for i in $(seq 1 $rowsCount);
 	do
-		randomString=$(generateRandomString $stringValueLength)
+		randomString=$(generateRandomString)
 		insertCommand="${insertCommand} ('${randomString}')"
 		
 		if [ $i != $rowsCount ];
