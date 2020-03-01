@@ -24,8 +24,24 @@ function getToastTableSizeInBytes()
     fi
 
     local originalTableName=$1
-    
-    #todo
+    local commandText="
+        select concat(pg_namespace.nspname, '.', toast_table.relname)
+        from pg_catalog.pg_namespace
+        inner join(
+            select
+                oid,
+                relname,
+                relnamespace
+            from pg_catalog.pg_class
+            where oid = (
+                select reltoastrelid
+                from pg_catalog.pg_class
+                where oid = '${originalTableName}'::regclass))
+            as toast_table
+        on toast_table.relnamespace = pg_namespace.oid;"
+
+    local toastTableFullName=$(psql -U postgres -c $commandText)
+    echo $(getTableSizeInBytes $toastTableFullName)
 }
 
 # Function to measure execution time of select query to table with name '$1'.
