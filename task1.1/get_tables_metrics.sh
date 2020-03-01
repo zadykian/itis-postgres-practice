@@ -1,5 +1,7 @@
 #!/bin/bash
 
+psqlOptions='--username postgres --tuples-only --no-align'
+
 # Function to get size of table with name passed as argument '$1'.
 function getTableSizeInBytes()
 {
@@ -10,8 +12,8 @@ function getTableSizeInBytes()
     fi
 
     local tableName=$1 
-    local commandText="select pg_relation_size(${table_name}::regclass);"
-    local tableSizeInBytes=$(psql -U postgres -c $commandText)
+    local commandText="select pg_relation_size('${tableName}'::regclass);"
+    echo $(psql ${psqlOptions} --command "${commandText}")
 }
 
 # Function to get size of TOAST table associated with table named as '$1'.
@@ -24,7 +26,8 @@ function getToastTableSizeInBytes()
     fi
 
     local originalTableName=$1
-    local commandText="
+
+    read -r -d '' commandText<<-sql
         select concat(pg_namespace.nspname, '.', toast_table.relname)
         from pg_catalog.pg_namespace
         inner join(
@@ -38,9 +41,10 @@ function getToastTableSizeInBytes()
                 from pg_catalog.pg_class
                 where oid = '${originalTableName}'::regclass))
             as toast_table
-        on toast_table.relnamespace = pg_namespace.oid;"
+        on toast_table.relnamespace = pg_namespace.oid;
+sql
 
-    local toastTableFullName=$(psql -U postgres -c $commandText)
+    local toastTableFullName=$(psql ${psqlOptions} --command "$commandText")
     echo $(getTableSizeInBytes $toastTableFullName)
 }
 
@@ -54,7 +58,7 @@ function measureSelectQueryTime()
     fi
 
     local tableName=$1;
-    #todo
+    echo $(psql ${psqlOptions} --command "\timing" --command "select * from ${tableName};")
 }
 
 schemaName='advanced_rds_task1'

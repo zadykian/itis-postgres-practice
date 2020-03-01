@@ -40,7 +40,7 @@ function insertRandomStrings()
 	done
 	insertCommand="${insertCommand};"
 	
-	psql -U postgres <<-sql 
+	psql --username postgres <<-sql 
 		$insertCommand 
 	sql
 }
@@ -48,7 +48,7 @@ function insertRandomStrings()
 schemaName='advanced_rds_task1'
 
 # recreate schema for test tables
-psql -U postgres <<sql
+psql --username postgres <<sql
 	drop schema if exists $schemaName cascade; 
 	create schema $schemaName;
 sql
@@ -59,7 +59,7 @@ do
 	tableName="${schemaName}.${toastStrategy}_table"
 	columnName='text_column'
 
-	psql -U postgres <<-sql
+	psql --username postgres <<-sql
 		create table $tableName 
 		(
 			$columnName varchar(4096) 
