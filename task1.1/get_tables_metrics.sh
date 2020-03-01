@@ -58,7 +58,7 @@ function measureSelectQueryTime()
     fi
 
     local tableName=$1;
-    echo $(psql ${psqlOptions} --command "\timing" --command "select * from ${tableName};")
+    echo $(psql ${psqlOptions} --command "\timing true" --command "select * from ${tableName};" | tail -1)
 }
 
 schemaName='advanced_rds_task1'
@@ -69,4 +69,10 @@ do
     originalTableSize=$(getTableSizeInBytes $tableName)
     toastTableSize=$(getToastTableSizeInBytes $tableName)
     selectQueryTime=$(measureSelectQueryTime $tableName)
+
+    echo "
+    ${toastStrategy^^}:
+    Original table size: ${originalTableSize} bytes;
+    TOAST table size: ${toastTableSize} bytes;
+    ${selectQueryTime}"
 done
