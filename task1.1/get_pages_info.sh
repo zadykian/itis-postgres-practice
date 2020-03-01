@@ -1,5 +1,6 @@
 #!/bin/bash
 
+schemaName='advanced_rds_task1'
 psqlOptions='--username postgres --tuples-only --no-align'
 
 # Function to get TOAST table name associated with table named as '$1'.
@@ -30,15 +31,76 @@ function getToastTableName()
         on toast_table.relnamespace = pg_namespace.oid;
 sql
 
-    echo =$(psql ${psqlOptions} --command "$commandText")
+    echo $(psql ${psqlOptions} --command "$commandText")
 }
 
-schemaName='advanced_rds_task1'
+# Function to get information about first page of table named as '$1'
+function printFirstPageInfo()
+{
+    if [ $# != 1 ];
+    then
+        echo 'Invalid arguments count'
+        exit 1
+    fi
+
+    local tableName=$1
+    local pageIndex=0
+    local tuplesDisplayLimit=4
+
+    read -r -d '' commandText<<-sql
+        set search_path to ${schemaName};
+        select tuple_count
+        from pgstattuple('${tableName}'::regclass);
+sql
+
+    local tableAliveTuplesCount=$(psql ${psqlOptions} --command "$commandText")
+    if [ $tableAliveTuplesCount -eq 0 ];
+    then
+        echo "  Table '${tableName}' contains zero tuples."
+        return
+    fi 
+
+    read -r -d '' commandText<<-sql
+        set search_path to ${schemaName};
+        select count(*)
+        from heap_page_items(get_raw_page('${tableName}', $pageIndex));
+sql
+
+    local pageTuplesCount=$(psql ${psqlOptions} --command "$commandText")
+    echo "  Page '${pageIndex}' tuples count: ${pageTuplesCount};"
+
+    read -r -d '' commandText<<-sql
+    set search_path to ${schemaName};
+    select
+        t_ctid as tuple_ctid,
+        lp_len as tuple_size_in_bytes
+    from heap_page_items(get_raw_page('${tableName}', $pageIndex))
+    limit ${tuplesDisplayLimit};
+sql
+
+    echo "  First ${tuplesDisplayLimit} tuples of page '${pageIndex}':"
+    echo "  "$(psql --username postgres --no-align --command "$commandText")
+
+}
+
+psql $psqlOptions <<sql 
+    create extension if not exists pageinspect
+    with schema ${schemaName};
+    create extension if not exists pgstattuple
+    with schema ${schemaName};
+sql
 
 for toastStrategy in 'plain' 'extended' 'external' 'main';
 do
     originalTableName="${schemaName}.${toastStrategy}_table"
     toastTableName=$(getToastTableName $originalTableName)
+
+    echo "${toastStrategy^^}"
+    echo "Original table:"
+    printFirstPageInfo $originalTableName
+    echo "TOAST table:"
+    printFirstPageInfo $toastTableName
+    echo ""
 done
 
 exit 0
