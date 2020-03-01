@@ -76,3 +76,5 @@ do
     TOAST table size: ${toastTableSize} bytes;
     ${selectQueryTime}"
 done
+
+exit 0
