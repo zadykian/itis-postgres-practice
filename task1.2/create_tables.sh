@@ -2,19 +2,6 @@
 psqlOptions='--username postgres'
 schemaName='advanced_rds_task1_2'
 
-# Function to generate random string of length '$1'
-function generateRandomString()
-{
-	if [ $# != 1 ]; 
-	then
-		echo 'Invalid arguments count'
-		exit 1
-	fi
-
-	local randomStringLength=$1
-	echo $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1)
-}
-
 # Function to build and execute SQL-script 
 # to insert 10000 random string values of length 50.
 function insertRandomStrings()
@@ -27,14 +14,14 @@ function insertRandomStrings()
 
 	local tableName=$1
 	local columnName=$2
-	local rowsCount=10000
+	local rowsCount=100
     local randomStringLength=50
 	
 	local insertCommand="insert into ${tableName} (${columnName}) values"
 	for i in $(seq 1 $rowsCount);
 	do
-		local randomString=$(generateRandomString $randomStringLength)
-		insertCommand="${insertCommand} ('${randomString}')"
+        local stringToInsert='abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde'
+		insertCommand="${insertCommand} ('${stringToInsert}')"
 		
 		if [ $i != $rowsCount ];
 		then
