@@ -49,14 +49,22 @@ function printFirstPageInfo()
 
     read -r -d '' commandText<<-sql
         set search_path to ${schemaName};
-        select tuple_count
+        select
+            table_len / 8192 as pages_count,
+            tuple_count
         from pgstattuple('${tableName}'::regclass);
 sql
+    local pgstattupleResult=$(psql ${psqlOptions} --command "$commandText")
+    local oldIFS=$IFS
+    IFS='|'
+    read -r -a tokens <<< $pgstattupleResult
+    IFS=$oldIFS
+    local pagesCount=${tokens[0]}
+    local tuplesCount=${tokens[1]}
 
-    local tableAliveTuplesCount=$(psql ${psqlOptions} --command "$commandText")
-    if [ $tableAliveTuplesCount -eq 0 ];
+    echo "  Table '${tableName}' contains '${pagesCount}' pages and '${tuplesCount}' tuples."
+    if [ $tuplesCount == 0 ];
     then
-        echo "  Table '${tableName}' contains zero tuples."
         return
     fi 
 
@@ -72,15 +80,14 @@ sql
     read -r -d '' commandText<<-sql
     set search_path to ${schemaName};
     select
-        t_ctid as tuple_ctid,
-        lp_len as tuple_size_in_bytes
+        t_ctid as ctid,
+        lp_len as size_in_bytes
     from heap_page_items(get_raw_page('${tableName}', $pageIndex))
     limit ${tuplesDisplayLimit};
 sql
 
     echo "  First ${tuplesDisplayLimit} tuples of page '${pageIndex}':"
     echo "  "$(psql --username postgres --no-align --command "$commandText")
-
 }
 
 psql $psqlOptions <<sql 
