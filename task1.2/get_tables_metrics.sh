@@ -16,6 +16,7 @@ function getTableSizeInBytes()
     echo $(psql ${psqlOptions} --command "${commandText}")
 }
 
+# Function to measure execution time of update query.
 function measureUpdateQueryTime()
 {
         if [ $# != 2 ];
@@ -35,6 +36,7 @@ sql
     echo $(psql ${psqlOptions} --command "\timing true" --command "${commandText}" | tail -1)
 }
 
+# Function to measure execution time of select query.
 function measureSelectQueryTime()
 {
         if [ $# != 2 ];
