@@ -1,10 +1,18 @@
 #!/bin/bash
+
+if [ $# != 1 ];
+then
+	echo 'Invalid arguments count'
+	exit 1
+fi
+
+rowsCount=$1
 psqlOptions='--username postgres'
 schemaName='advanced_rds_task1_2'
 
 # Function to build and execute SQL-script 
 # to insert 10000 random string values of length 50.
-function insertRandomStrings()
+function insertStringValues()
 {
 	if [ $# != 2 ];
 	then
@@ -14,7 +22,6 @@ function insertRandomStrings()
 
 	local tableName=$1
 	local columnName=$2
-	local rowsCount=100
     local randomStringLength=50
 	
 	local insertCommand="insert into ${tableName} (${columnName}) values"
@@ -56,5 +63,5 @@ do
         with (fillfactor = ${fillfactorValue});
 	sql
 	
-	insertRandomStrings $tableName $textColumnName
+	insertStringValues $tableName $textColumnName
 done
