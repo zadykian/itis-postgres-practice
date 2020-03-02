@@ -1,4 +1,6 @@
 #!/bin/bash
+psqlOptions='--username postgres'
+schemaName='advanced_rds_task1_2'
 
 # Function to generate random string of length '$1'
 function generateRandomString()
@@ -14,7 +16,7 @@ function generateRandomString()
 }
 
 # Function to build and execute SQL-script 
-# to insert 100 random string values of length 3072.
+# to insert 10000 random string values of length 50.
 function insertRandomStrings()
 {
 	if [ $# != 2 ];
@@ -25,8 +27,8 @@ function insertRandomStrings()
 
 	local tableName=$1
 	local columnName=$2
-	local rowsCount=100
-	local randomStringLength=3072
+	local rowsCount=10000
+    local randomStringLength=50
 	
 	local insertCommand="insert into ${tableName} (${columnName}) values"
 	for i in $(seq 1 $rowsCount);
@@ -46,32 +48,26 @@ function insertRandomStrings()
 	sql
 }
 
-schemaName='advanced_rds_task1'
-
 # recreate schema for test tables
-psql --username postgres <<sql
+psql $psqlOptions postgres <<sql
 	drop schema if exists $schemaName cascade; 
 	create schema $schemaName;
 sql
 
-# create table for each TOAST strategy
-for toastStrategy in 'plain' 'extended' 'external' 'main';
+for fillfactorValue in 50 75 90 100;
 do
-	tableName="${schemaName}.${toastStrategy}_table"
-	columnName='text_column'
+    tableName="${schemaName}.fillfactor_${fillfactorValue}_table"
+	textColumnName='varchar_column'
 
-	psql --username postgres <<-sql
+	psql $psqlOptions <<-sql
 		create table $tableName 
 		(
-			$columnName varchar(4096) 
-		);
-		
-		alter table $tableName 
-		alter column $columnName 
-		set storage $toastStrategy;
+            number_column int,
+			$textColumnName varchar(100),
+            date_column date 
+		)
+        with (fillfactor = ${fillfactorValue});
 	sql
 	
-	insertRandomStrings $tableName $columnName
+	insertRandomStrings $tableName $textColumnName
 done
-
-exit 0
