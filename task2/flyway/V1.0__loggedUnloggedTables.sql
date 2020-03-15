@@ -8,7 +8,7 @@ create table public.logged_table
     date_column date
 );
 
-create table public.unlogged_table
+create unlogged table public.unlogged_table
 (
     id serial primary key,
     text_column varchar(256),
