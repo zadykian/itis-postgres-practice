@@ -1,6 +1,3 @@
-\set text_value md5(random()::text)
-\set date_value now()
-
 begin;
-    insert into :table_name (text_value, date_column) values (:text_value, :date_value);
+    insert into :table_name (text_column, date_column) values ('1234567890', '2020-01-01');
 end;
