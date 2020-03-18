@@ -1,4 +1,4 @@
-\setshell id_to_update ./get_id_to_update.sh :table_name
+\set id_to_update random(2, 150000)
 
 begin;
     update :table_name
