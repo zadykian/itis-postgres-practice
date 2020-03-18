@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# != 4 ];
+if [ $# != 3 ];
 then
     echo 'Invalid arguments count'
     exit 1
@@ -12,9 +12,9 @@ options+="--user=postgres "
 options+="--file=$1 "
 options+="--define=table_name=$2 "
 options+="--time=$3 "
-options+="--client=$4 "
 options+="--no-vacuum "
 
-options+="homeworkdb"
-
-pgbench $options
+for clientCount in 1 4 8 16;
+do
+    pgbench --client $clientCount $options "homeworkdb"
+done
