@@ -14,8 +14,4 @@ options+="--define=table_name=$2 "
 options+="--time=$3 "
 options+="--no-vacuum "
 
-for clientCount in 1 4 8 16;
-do
-    echo ""
-    pgbench --client $clientCount $options "homeworkdb"
-done
+pgbench --client $clientCount $options "homeworkdb"
