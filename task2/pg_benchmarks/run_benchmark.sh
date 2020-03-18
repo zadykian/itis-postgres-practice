@@ -14,4 +14,4 @@ options+="--define=table_name=$2 "
 options+="--time=$3 "
 options+="--no-vacuum "
 
-pgbench --client $clientCount $options "homeworkdb"
+pgbench $options "homeworkdb"
