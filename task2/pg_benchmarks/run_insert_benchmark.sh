@@ -6,15 +6,15 @@ then
     exit 1
 fi
 
-pgbenchOptions="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
-pgbenchOptions+="--port=5432 "
-pgbenchOptions+="--user=postgres "
-pgbenchOptions+="--define=table_name=$1 "
-pgbenchOptions+="--time=$2 "
-pgbenchOptions+="--client=$3 "
-pgbenchOptions+="--file=insert_benchmark.sql "
-pgbenchOptions+="--no-vacuum "
+options="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
+options+="--port=5432 "
+options+="--user=postgres "
+options+="--define=table_name=$1 "
+options+="--time=$2 "
+options+="--client=$3 "
+options+="--file=insert_benchmark.sql "
+options+="--no-vacuum "
 
-pgbenchOptions+="homeworkdb"
+options+="homeworkdb"
 
-pgbench $pgbenchOptions
+pgbench $options
