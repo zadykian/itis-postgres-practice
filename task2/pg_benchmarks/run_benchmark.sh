@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# != 3 ];
+if [ $# != 4 ];
 then
     echo 'Invalid arguments count'
     exit 1
@@ -9,10 +9,10 @@ fi
 options="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
 options+="--port=5432 "
 options+="--user=postgres "
-options+="--define=table_name=$1 "
-options+="--time=$2 "
-options+="--client=$3 "
-options+="--file=insert_benchmark.sql "
+options+="--file=$1 "
+options+="--define=table_name=$2 "
+options+="--time=$3 "
+options+="--client=$4 "
 options+="--no-vacuum "
 
 options+="homeworkdb"
