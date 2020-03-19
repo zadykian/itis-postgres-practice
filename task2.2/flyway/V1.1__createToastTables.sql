@@ -12,7 +12,7 @@ create table plain_strategy_table
 );
 
 alter table plain_strategy_table
-alter column text column
+alter column text_column
 set storage plain;
 
 create table extended_strategy_table
@@ -23,7 +23,7 @@ create table extended_strategy_table
 );
 
 alter table plain_strategy_table
-alter column text column
+alter column text_column
 set storage extended;
 
 create table external_strategy_table
@@ -34,7 +34,7 @@ create table external_strategy_table
 );
 
 alter table plain_strategy_table
-alter column text column
+alter column text_column
 set storage external;
 
 create table main_strategy_table
@@ -45,5 +45,5 @@ create table main_strategy_table
 );
 
 alter table plain_strategy_table
-alter column text column
+alter column text_column
 set storage main;
