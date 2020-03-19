@@ -22,7 +22,7 @@ create table extended_strategy_table
     date_column date
 );
 
-alter table plain_strategy_table
+alter table extended_strategy_table
 alter column text_column
 set storage extended;
 
@@ -33,7 +33,7 @@ create table external_strategy_table
     date_column date
 );
 
-alter table plain_strategy_table
+alter table external_strategy_table
 alter column text_column
 set storage external;
 
@@ -44,6 +44,6 @@ create table main_strategy_table
     date_column date
 );
 
-alter table plain_strategy_table
+alter table main_strategy_table
 alter column text_column
 set storage main;

@@ -13,7 +13,7 @@ function generateRandomString()
 	cat /dev/urandom | tr -dc 'a-z0-9' | fold -w $randomStringLength | head -n 1
 }
 
-if [ $# != 2 ];
+if [ $# != 1 ];
 then
     echo 'Invalid arguments count'
     exit 1
@@ -25,9 +25,14 @@ options+="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
 options+="--port=5432 "
 options+="--user=postgres "
 options+="--file=insert_benchmark.sql "
-options+="--define=table_name=$1 "
-options+="--time=$2 "
+options+="--time=$1 "
 options+="--no-vacuum "
 options+="--define=text_value='$randomString'"
 
-pgbench $options "homeworkdb"
+schemaName="task_2_2_toast"
+
+for toastStrategy in "plain" "extended" "external" "main";
+do
+    tableName="${schemaName}.${toastStrategy}_strategy_table"
+    pgbench $options --define=table_name=$tableName "homeworkdb"
+done
