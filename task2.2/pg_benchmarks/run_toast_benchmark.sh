@@ -25,7 +25,7 @@ options+="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
 options+="--port=5432 "
 options+="--user=postgres "
 options+="--file=$1 "
-options+="--time=$2 "
+options+="$2 "
 options+="--no-vacuum "
 options+="--define=text_value='$randomString'"
 
