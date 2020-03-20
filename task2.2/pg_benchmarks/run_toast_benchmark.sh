@@ -33,6 +33,9 @@ schemaName="task_2_2_toast"
 
 for toastStrategy in "plain" "extended" "external" "main";
 do
+	echo ""
+	echo "${toastStrategy}:"
+
     tableName="${schemaName}.${toastStrategy}_strategy_table"
     pgbench $options --define=table_name=$tableName "homeworkdb"
 done

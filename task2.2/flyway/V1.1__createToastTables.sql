@@ -6,9 +6,7 @@ set search_path to task_2_2_toast;
 
 create table plain_strategy_table
 (
-    id serial primary key,
-    text_column varchar(4096),
-    date_column date
+    text_column varchar(4096)
 );
 
 alter table plain_strategy_table
@@ -17,9 +15,7 @@ set storage plain;
 
 create table extended_strategy_table
 (
-    id serial primary key,
-    text_column varchar(4096),
-    date_column date
+    text_column varchar(4096)
 );
 
 alter table extended_strategy_table
@@ -28,9 +24,7 @@ set storage extended;
 
 create table external_strategy_table
 (
-    id serial primary key,
-    text_column varchar(4096),
-    date_column date
+    text_column varchar(4096)
 );
 
 alter table external_strategy_table
@@ -39,9 +33,7 @@ set storage external;
 
 create table main_strategy_table
 (
-    id serial primary key,
-    text_column varchar(4096),
-    date_column date
+    text_column varchar(4096)
 );
 
 alter table main_strategy_table
