@@ -1,4 +1,4 @@
-\set id_to_update random(1, 100000)
+\set id_to_update random(1, 10000)
 
 begin;
     update :table_name
