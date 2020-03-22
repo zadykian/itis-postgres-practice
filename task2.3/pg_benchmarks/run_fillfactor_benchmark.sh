@@ -37,7 +37,7 @@ schemaName="task_2_3_fillfactor"
 for fillfactorValue in 50 75 90 100;
 do
 	echo ""
-	echo "fillfactor: ${fillfactorValue}%:"
+	echo "fillfactor ${fillfactorValue}%:"
 
     tableName="${schemaName}.table_${fillfactorValue}"
     pgbench $options --define=table_name=$tableName "homeworkdb"
