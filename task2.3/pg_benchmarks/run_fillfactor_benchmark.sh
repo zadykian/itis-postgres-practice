@@ -19,15 +19,18 @@ then
     exit 1
 fi
 
-randomString=$(generateRandomString 50)
-
 options+="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
 options+="--port=5432 "
 options+="--user=postgres "
 options+="--no-vacuum "
-options+="--define=text_value='$randomString'"
 options+="--file=$1 "
 options+="$2 "
+
+if [ $1 == "insert_benchmark.sql" ];
+then
+    randomString=$(generateRandomString 50)
+    options+="--define=text_value='$randomString'"
+fi
 
 schemaName="task_2_3_fillfactor"
 
