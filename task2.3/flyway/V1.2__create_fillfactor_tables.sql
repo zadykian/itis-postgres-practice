@@ -2,7 +2,7 @@
 --value of fillfactor parameter for benchmarking.
 
 create schema task_2_3_fillfactor;
-set search path to task_2_3_fillfactor;
+set search_path to task_2_3_fillfactor;
 
 create table table_50
 (
