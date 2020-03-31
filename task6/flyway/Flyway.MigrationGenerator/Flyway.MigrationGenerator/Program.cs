@@ -6,13 +6,6 @@ namespace Flyway.MigrationGenerator
 {
 	internal static class Program
 	{
-		private const string ruleText = @"
-			create rule update_child_{0}_to_{1}
-			as on update to child_{0}
-			where old.id != new.id and new.id % 10 = {1}
-			do instead
-			insert into task_6.child_{1} values (new.*);";
-		
 		private static void Main(string[] args)
 		{
 			if (args.Length != 1)
@@ -21,6 +14,8 @@ namespace Flyway.MigrationGenerator
 				Environment.Exit(-1);
 			}
 
+			var ruleText = File.ReadAllText("create_rule.sql");
+			
 			using var fileStream = new FileStream(args[0], FileMode.Append);
 			using var streamWriter = new StreamWriter(fileStream);
 			
