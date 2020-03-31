@@ -25,11 +25,9 @@ namespace Flyway.MigrationGenerator
 					.Range(0, 10)
 					.Where(number => number != childTableNumber))
 				{
-					var ruleString = string
-						.Format(ruleText, childTableNumber, destinationTableNumber)
-						.Replace("\t", string.Empty);
-					
+					var ruleString = string.Format(ruleText, childTableNumber, destinationTableNumber);
 					streamWriter.WriteLine(ruleString);
+					streamWriter.WriteLine();
 				}
 			}
 		}
