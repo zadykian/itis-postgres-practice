@@ -2,4 +2,3 @@
 -- for child tables.
 
 set search_path to task_6;
-
