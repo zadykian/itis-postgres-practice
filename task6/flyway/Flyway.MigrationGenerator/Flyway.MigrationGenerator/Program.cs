@@ -24,10 +24,10 @@ namespace Flyway.MigrationGenerator
 			using var fileStream = new FileStream(args[0], FileMode.Append);
 			using var streamWriter = new StreamWriter(fileStream);
 			
-			foreach (var childTableNumber in Enumerable.Range(0, 9))
+			foreach (var childTableNumber in Enumerable.Range(0, 10))
 			{
 				foreach (var destinationTableNumber in Enumerable
-					.Range(0, 9)
+					.Range(0, 10)
 					.Where(number => number != childTableNumber))
 				{
 					var ruleString = string
