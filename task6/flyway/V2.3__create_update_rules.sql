@@ -2,12 +2,11 @@
 -- for child tables.
 
 set search_path to task_6;
-
 create rule move_from_0_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 1
+	old.id % 10 = 0
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_0
@@ -20,8 +19,8 @@ do instead
 create rule move_from_0_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 2
+	old.id % 10 = 0
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_0
@@ -34,8 +33,8 @@ do instead
 create rule move_from_0_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 3
+	old.id % 10 = 0
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_0
@@ -48,8 +47,8 @@ do instead
 create rule move_from_0_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 4
+	old.id % 10 = 0
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_0
@@ -62,8 +61,8 @@ do instead
 create rule move_from_0_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 5
+	old.id % 10 = 0
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_0
@@ -76,8 +75,8 @@ do instead
 create rule move_from_0_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 6
+	old.id % 10 = 0
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_0
@@ -90,8 +89,8 @@ do instead
 create rule move_from_0_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 7
+	old.id % 10 = 0
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_0
@@ -104,8 +103,8 @@ do instead
 create rule move_from_0_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 8
+	old.id % 10 = 0
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_0
@@ -118,8 +117,8 @@ do instead
 create rule move_from_0_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 0
-	and new.id % 10 == 9
+	old.id % 10 = 0
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_0
@@ -132,8 +131,8 @@ do instead
 create rule move_from_1_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 0
+	old.id % 10 = 1
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_1
@@ -146,8 +145,8 @@ do instead
 create rule move_from_1_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 2
+	old.id % 10 = 1
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_1
@@ -160,8 +159,8 @@ do instead
 create rule move_from_1_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 3
+	old.id % 10 = 1
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_1
@@ -174,8 +173,8 @@ do instead
 create rule move_from_1_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 4
+	old.id % 10 = 1
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_1
@@ -188,8 +187,8 @@ do instead
 create rule move_from_1_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 5
+	old.id % 10 = 1
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_1
@@ -202,8 +201,8 @@ do instead
 create rule move_from_1_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 6
+	old.id % 10 = 1
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_1
@@ -216,8 +215,8 @@ do instead
 create rule move_from_1_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 7
+	old.id % 10 = 1
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_1
@@ -230,8 +229,8 @@ do instead
 create rule move_from_1_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 8
+	old.id % 10 = 1
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_1
@@ -244,8 +243,8 @@ do instead
 create rule move_from_1_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 1
-	and new.id % 10 == 9
+	old.id % 10 = 1
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_1
@@ -258,8 +257,8 @@ do instead
 create rule move_from_2_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 0
+	old.id % 10 = 2
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_2
@@ -272,8 +271,8 @@ do instead
 create rule move_from_2_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 1
+	old.id % 10 = 2
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_2
@@ -286,8 +285,8 @@ do instead
 create rule move_from_2_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 3
+	old.id % 10 = 2
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_2
@@ -300,8 +299,8 @@ do instead
 create rule move_from_2_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 4
+	old.id % 10 = 2
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_2
@@ -314,8 +313,8 @@ do instead
 create rule move_from_2_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 5
+	old.id % 10 = 2
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_2
@@ -328,8 +327,8 @@ do instead
 create rule move_from_2_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 6
+	old.id % 10 = 2
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_2
@@ -342,8 +341,8 @@ do instead
 create rule move_from_2_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 7
+	old.id % 10 = 2
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_2
@@ -356,8 +355,8 @@ do instead
 create rule move_from_2_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 8
+	old.id % 10 = 2
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_2
@@ -370,8 +369,8 @@ do instead
 create rule move_from_2_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 2
-	and new.id % 10 == 9
+	old.id % 10 = 2
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_2
@@ -384,8 +383,8 @@ do instead
 create rule move_from_3_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 0
+	old.id % 10 = 3
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_3
@@ -398,8 +397,8 @@ do instead
 create rule move_from_3_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 1
+	old.id % 10 = 3
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_3
@@ -412,8 +411,8 @@ do instead
 create rule move_from_3_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 2
+	old.id % 10 = 3
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_3
@@ -426,8 +425,8 @@ do instead
 create rule move_from_3_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 4
+	old.id % 10 = 3
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_3
@@ -440,8 +439,8 @@ do instead
 create rule move_from_3_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 5
+	old.id % 10 = 3
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_3
@@ -454,8 +453,8 @@ do instead
 create rule move_from_3_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 6
+	old.id % 10 = 3
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_3
@@ -468,8 +467,8 @@ do instead
 create rule move_from_3_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 7
+	old.id % 10 = 3
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_3
@@ -482,8 +481,8 @@ do instead
 create rule move_from_3_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 8
+	old.id % 10 = 3
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_3
@@ -496,8 +495,8 @@ do instead
 create rule move_from_3_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 3
-	and new.id % 10 == 9
+	old.id % 10 = 3
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_3
@@ -510,8 +509,8 @@ do instead
 create rule move_from_4_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 0
+	old.id % 10 = 4
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_4
@@ -524,8 +523,8 @@ do instead
 create rule move_from_4_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 1
+	old.id % 10 = 4
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_4
@@ -538,8 +537,8 @@ do instead
 create rule move_from_4_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 2
+	old.id % 10 = 4
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_4
@@ -552,8 +551,8 @@ do instead
 create rule move_from_4_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 3
+	old.id % 10 = 4
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_4
@@ -566,8 +565,8 @@ do instead
 create rule move_from_4_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 5
+	old.id % 10 = 4
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_4
@@ -580,8 +579,8 @@ do instead
 create rule move_from_4_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 6
+	old.id % 10 = 4
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_4
@@ -594,8 +593,8 @@ do instead
 create rule move_from_4_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 7
+	old.id % 10 = 4
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_4
@@ -608,8 +607,8 @@ do instead
 create rule move_from_4_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 8
+	old.id % 10 = 4
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_4
@@ -622,8 +621,8 @@ do instead
 create rule move_from_4_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 4
-	and new.id % 10 == 9
+	old.id % 10 = 4
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_4
@@ -636,8 +635,8 @@ do instead
 create rule move_from_5_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 0
+	old.id % 10 = 5
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_5
@@ -650,8 +649,8 @@ do instead
 create rule move_from_5_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 1
+	old.id % 10 = 5
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_5
@@ -664,8 +663,8 @@ do instead
 create rule move_from_5_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 2
+	old.id % 10 = 5
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_5
@@ -678,8 +677,8 @@ do instead
 create rule move_from_5_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 3
+	old.id % 10 = 5
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_5
@@ -692,8 +691,8 @@ do instead
 create rule move_from_5_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 4
+	old.id % 10 = 5
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_5
@@ -706,8 +705,8 @@ do instead
 create rule move_from_5_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 6
+	old.id % 10 = 5
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_5
@@ -720,8 +719,8 @@ do instead
 create rule move_from_5_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 7
+	old.id % 10 = 5
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_5
@@ -734,8 +733,8 @@ do instead
 create rule move_from_5_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 8
+	old.id % 10 = 5
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_5
@@ -748,8 +747,8 @@ do instead
 create rule move_from_5_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 5
-	and new.id % 10 == 9
+	old.id % 10 = 5
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_5
@@ -762,8 +761,8 @@ do instead
 create rule move_from_6_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 0
+	old.id % 10 = 6
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_6
@@ -776,8 +775,8 @@ do instead
 create rule move_from_6_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 1
+	old.id % 10 = 6
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_6
@@ -790,8 +789,8 @@ do instead
 create rule move_from_6_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 2
+	old.id % 10 = 6
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_6
@@ -804,8 +803,8 @@ do instead
 create rule move_from_6_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 3
+	old.id % 10 = 6
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_6
@@ -818,8 +817,8 @@ do instead
 create rule move_from_6_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 4
+	old.id % 10 = 6
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_6
@@ -832,8 +831,8 @@ do instead
 create rule move_from_6_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 5
+	old.id % 10 = 6
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_6
@@ -846,8 +845,8 @@ do instead
 create rule move_from_6_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 7
+	old.id % 10 = 6
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_6
@@ -860,8 +859,8 @@ do instead
 create rule move_from_6_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 8
+	old.id % 10 = 6
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_6
@@ -874,8 +873,8 @@ do instead
 create rule move_from_6_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 6
-	and new.id % 10 == 9
+	old.id % 10 = 6
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_6
@@ -888,8 +887,8 @@ do instead
 create rule move_from_7_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 0
+	old.id % 10 = 7
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_7
@@ -902,8 +901,8 @@ do instead
 create rule move_from_7_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 1
+	old.id % 10 = 7
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_7
@@ -916,8 +915,8 @@ do instead
 create rule move_from_7_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 2
+	old.id % 10 = 7
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_7
@@ -930,8 +929,8 @@ do instead
 create rule move_from_7_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 3
+	old.id % 10 = 7
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_7
@@ -944,8 +943,8 @@ do instead
 create rule move_from_7_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 4
+	old.id % 10 = 7
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_7
@@ -958,8 +957,8 @@ do instead
 create rule move_from_7_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 5
+	old.id % 10 = 7
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_7
@@ -972,8 +971,8 @@ do instead
 create rule move_from_7_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 6
+	old.id % 10 = 7
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_7
@@ -986,8 +985,8 @@ do instead
 create rule move_from_7_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 8
+	old.id % 10 = 7
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_7
@@ -1000,8 +999,8 @@ do instead
 create rule move_from_7_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 7
-	and new.id % 10 == 9
+	old.id % 10 = 7
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_7
@@ -1014,8 +1013,8 @@ do instead
 create rule move_from_8_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 0
+	old.id % 10 = 8
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_8
@@ -1028,8 +1027,8 @@ do instead
 create rule move_from_8_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 1
+	old.id % 10 = 8
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_8
@@ -1042,8 +1041,8 @@ do instead
 create rule move_from_8_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 2
+	old.id % 10 = 8
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_8
@@ -1056,8 +1055,8 @@ do instead
 create rule move_from_8_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 3
+	old.id % 10 = 8
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_8
@@ -1070,8 +1069,8 @@ do instead
 create rule move_from_8_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 4
+	old.id % 10 = 8
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_8
@@ -1084,8 +1083,8 @@ do instead
 create rule move_from_8_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 5
+	old.id % 10 = 8
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_8
@@ -1098,8 +1097,8 @@ do instead
 create rule move_from_8_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 6
+	old.id % 10 = 8
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_8
@@ -1112,8 +1111,8 @@ do instead
 create rule move_from_8_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 7
+	old.id % 10 = 8
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_8
@@ -1126,8 +1125,8 @@ do instead
 create rule move_from_8_to_9
 as on update to task_6.hub_table
 where
-	old.id % 10 == 8
-	and new.id % 10 == 9
+	old.id % 10 = 8
+	and new.id % 10 = 9
 do instead
 (
 	delete from task_6.child_8
@@ -1140,8 +1139,8 @@ do instead
 create rule move_from_9_to_0
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 0
+	old.id % 10 = 9
+	and new.id % 10 = 0
 do instead
 (
 	delete from task_6.child_9
@@ -1154,8 +1153,8 @@ do instead
 create rule move_from_9_to_1
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 1
+	old.id % 10 = 9
+	and new.id % 10 = 1
 do instead
 (
 	delete from task_6.child_9
@@ -1168,8 +1167,8 @@ do instead
 create rule move_from_9_to_2
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 2
+	old.id % 10 = 9
+	and new.id % 10 = 2
 do instead
 (
 	delete from task_6.child_9
@@ -1182,8 +1181,8 @@ do instead
 create rule move_from_9_to_3
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 3
+	old.id % 10 = 9
+	and new.id % 10 = 3
 do instead
 (
 	delete from task_6.child_9
@@ -1196,8 +1195,8 @@ do instead
 create rule move_from_9_to_4
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 4
+	old.id % 10 = 9
+	and new.id % 10 = 4
 do instead
 (
 	delete from task_6.child_9
@@ -1210,8 +1209,8 @@ do instead
 create rule move_from_9_to_5
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 5
+	old.id % 10 = 9
+	and new.id % 10 = 5
 do instead
 (
 	delete from task_6.child_9
@@ -1224,8 +1223,8 @@ do instead
 create rule move_from_9_to_6
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 6
+	old.id % 10 = 9
+	and new.id % 10 = 6
 do instead
 (
 	delete from task_6.child_9
@@ -1238,8 +1237,8 @@ do instead
 create rule move_from_9_to_7
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 7
+	old.id % 10 = 9
+	and new.id % 10 = 7
 do instead
 (
 	delete from task_6.child_9
@@ -1252,8 +1251,8 @@ do instead
 create rule move_from_9_to_8
 as on update to task_6.hub_table
 where
-	old.id % 10 == 9
-	and new.id % 10 == 8
+	old.id % 10 = 9
+	and new.id % 10 = 8
 do instead
 (
 	delete from task_6.child_9
