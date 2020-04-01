@@ -16,16 +16,16 @@ namespace Flyway.MigrationGenerator
 
 			var ruleText = File.ReadAllText("create_rule.sql");
 			
-			using var fileStream = new FileStream(args[0], FileMode.Append);
+			using var fileStream = new FileStream(args[0], FileMode.Create);
 			using var streamWriter = new StreamWriter(fileStream);
 			
-			foreach (var childTableNumber in Enumerable.Range(0, 10))
+			foreach (var oldTableNumber in Enumerable.Range(0, 10))
 			{
-				foreach (var destinationTableNumber in Enumerable
+				foreach (var newTableNumber in Enumerable
 					.Range(0, 10)
-					.Where(number => number != childTableNumber))
+					.Where(number => number != oldTableNumber))
 				{
-					var ruleString = string.Format(ruleText, childTableNumber, destinationTableNumber);
+					var ruleString = string.Format(ruleText, oldTableNumber, newTableNumber);
 					streamWriter.WriteLine(ruleString);
 					streamWriter.WriteLine();
 				}
