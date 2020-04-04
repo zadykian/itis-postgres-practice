@@ -1,5 +1,6 @@
 -- flyway script to create structure of inherited tables.
 
+drop schema if exists task_6 cascade;
 create schema task_6;
 set search_path to task_6;
 
