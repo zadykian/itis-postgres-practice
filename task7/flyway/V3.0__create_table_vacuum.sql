@@ -1,4 +1,4 @@
-drop schema if exists task_7;
+drop schema if exists task_7 cascade;
 create schema task_7;
 set search_path to task_7;
 
