@@ -15,5 +15,3 @@ options+="--time=$3 "
 options+="--no-vacuum "
 
 pgbench $options "homeworkdb"
-
-
