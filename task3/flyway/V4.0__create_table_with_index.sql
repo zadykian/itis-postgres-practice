@@ -5,6 +5,10 @@ create table task_3.table_to_cluster
 (
     id int,
     name varchar(256)
+)
+with
+(
+    autovacuum_enabled = false
 );
 
 create index id_btree_index
