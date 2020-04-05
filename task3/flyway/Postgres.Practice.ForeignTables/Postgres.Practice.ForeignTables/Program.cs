@@ -11,7 +11,7 @@ namespace Postgres.Practice.ForeignTables
 	internal class Program
 	{
 		private static readonly Random random = new Random();
-		
+
 		private static void Main()
 		{
 			FluentMapper.Initialize(configuration =>
@@ -23,11 +23,12 @@ namespace Postgres.Practice.ForeignTables
 			using var connection = new NpgsqlConnection(connectionString);
 			connection.Open();
 
+			// generate entity objects with random routing keys.
 			var entitiesToInsert = Enumerable
 				.Range(1, 10000)
 				.Select(_ => new Entity("some_name", (RoutingKey) random.Next(0, 2)))
 				.ToArray();
-			
+
 			connection.InsertManyInTransaction(entitiesToInsert);
 		}
 	}
