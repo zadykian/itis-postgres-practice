@@ -7,6 +7,6 @@ create table task_3.table_to_cluster
     name varchar(256)
 );
 
-create index 
+create index id_btree_index
 on task_3.table_to_cluster 
 using btree (id);

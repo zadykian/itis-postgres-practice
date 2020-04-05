@@ -23,7 +23,7 @@ namespace Flyway.MigrationGenerator.Task3
 
 			foreach (var randomValue in Enumerable
 				.Range(1, 10000)
-				.Select(_ => random.Next(0, int.MaxValue)))
+				.Select(_ => random.Next(0, 100000)))
 			{
 				streamWriter.WriteLine($"\t({randomValue}, 'some_name'),");
 			}
