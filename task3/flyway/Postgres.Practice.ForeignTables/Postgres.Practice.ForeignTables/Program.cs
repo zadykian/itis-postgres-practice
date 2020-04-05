@@ -16,7 +16,9 @@ namespace Postgres.Practice.ForeignTables
 		{
 			FluentMapper.Initialize(configuration =>
 			{
-				configuration.AddAllAssemblyCrudEntityMaps();
+				configuration
+					.AddAllAssemblyCrudEntityMaps()
+					.UseForCrudOperations();
 			});
 
 			var connectionString = ConfigurationFactory.Configuration.GetConnectionString("AmazonRds");
@@ -26,10 +28,11 @@ namespace Postgres.Practice.ForeignTables
 			// generate entity objects with random routing keys.
 			var entitiesToInsert = Enumerable
 				.Range(1, 10000)
-				.Select(_ => new Entity("some_name", (RoutingKey) random.Next(0, 2)))
+				.Select(_ => new Entity("some_name", (RoutingKey) random.Next(0, 3)))
 				.ToArray();
 
 			connection.InsertManyInTransaction(entitiesToInsert);
+			Console.ReadKey();
 		}
 	}
 }
