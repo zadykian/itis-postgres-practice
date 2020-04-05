@@ -10,8 +10,8 @@ namespace Postgres.Practice.ForeignTables
 		
 		public long Id { get; private set; }
 		
-		public string Name { get; private set; }
+		public string Name { get; }
 		
-		public RoutingKey RoutingKey { get; private set; }
+		public RoutingKey RoutingKey { get; }
 	}
 }
