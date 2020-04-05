@@ -2,9 +2,8 @@ set search_path to task_4;
 
 drop user mapping if exists for current_user server access_to_tables;
 drop server if exists access_to_tables;
-drop extension if exists postgres_fdw;
 
-create extension postgres_fdw;
+create extension if not exists postgres_fdw;
 
 create server access_to_tables
 foreign data wrapper postgres_fdw
