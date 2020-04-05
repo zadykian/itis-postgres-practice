@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -16,20 +15,18 @@ namespace Flyway.MigrationGenerator.Task3
 				Console.WriteLine("Invalid arguments count!");
 				Environment.Exit(-1);
 			}
-			
-			// generate 10000 random positive integers.
-			var result = Enumerable
-				.Range(1, 10000)
-				.Select(_ => random.Next(0, int.MaxValue));
-			
+
 			using var fileStream = new FileStream(args[0], FileMode.Create);
 			using var streamWriter = new StreamWriter(fileStream);
 			
-			streamWriter.WriteLine($@"
-				insert into task_3.table_to_cluster (id, name)
-				values");
-			
-			
+			streamWriter.WriteLine($"insert into task_3.table_to_cluster (id, name) values");
+
+			foreach (var randomValue in Enumerable
+				.Range(1, 10000)
+				.Select(_ => random.Next(0, int.MaxValue)))
+			{
+				streamWriter.WriteLine($"\t({randomValue}, 'some_name'),");
+			}
 		}
 	}
 }
