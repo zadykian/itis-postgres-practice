@@ -3,7 +3,11 @@
 options+="--host=localhost "
 options+="--port=5432 "
 options+="--user=postgres "
-options+="--transactions=$1 "
-options+="--progress=60"
+options+="--progress=60 "
+
+options+="--client=100 "
+options+="--scale=500 "
+options+="--time=300 "
+
 
 pgbench $options "postgres"
