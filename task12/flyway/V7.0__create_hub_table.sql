@@ -1,8 +1,7 @@
-drop schema if exists task_9 cascade;
-create schema task_9;
-set search_path to task_9;
+drop schema if exists task_12 cascade;
+create schema task_12;
 
-create table hub_table
+create table task_12.hub_table
 (
     id serial primary key,
     text_value varchar(256)
