@@ -12,6 +12,8 @@ $func$
 
         command_text := format('delete from %s where id = %s;', old_partition_name, old.id);
         execute command_text;
+
+        return null;
     end;
 $func$;
 
