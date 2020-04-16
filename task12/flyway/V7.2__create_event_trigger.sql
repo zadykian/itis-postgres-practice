@@ -1,6 +1,6 @@
 create or replace function task_12.log_tables_creation()
-returns event_trigger
-language plpgsql as
+    returns event_trigger
+    language plpgsql as
 $func$
     declare
         table_oid oid;

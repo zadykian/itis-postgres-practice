@@ -1,6 +1,6 @@
 create or replace function handle_hub_table_insert()
-returns trigger
-language plpgsql as
+    returns trigger
+    language plpgsql as
 $func$
     declare
         id_remainder smallint := new.id % 10;

@@ -1,6 +1,6 @@
 create or replace function create_partition(id_remainder smallint)
-returns void
-language plpgsql as
+    returns void
+    language plpgsql as
 $func$
     declare
         partition_name varchar(64) := concat('child_table_', id_remainder);

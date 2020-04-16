@@ -1,6 +1,6 @@
 create or replace function move_record_to_another_partition()
-returns trigger
-language plpgsql as
+    returns trigger
+    language plpgsql as
 $func$
     declare
         old_partition_name varchar(32) := concat('child_table_', old.id % 10);
