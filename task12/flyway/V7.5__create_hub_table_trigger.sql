@@ -1,4 +1,4 @@
-create or replace function handle_hub_table_insert()
+create or replace function task_12.handle_hub_table_insert()
     returns trigger
     language plpgsql as
 $func$
@@ -14,10 +14,10 @@ $func$
                 relnamespace = 'task_12'::regnamespace
                 and relname = partition_name)
         then
-            perform create_partition(id_remainder);
+            perform task_12.create_partition(id_remainder);
         end if;
 
-        select format('insert into %s (id, text_value) values ($1.*);', partition_name)
+        select format('insert into task_12.%s (id, text_value) values ($1.*);', partition_name)
         into insert_command_text;
 
         execute insert_command_text using new;
@@ -26,6 +26,6 @@ $func$
 $func$;
 
 create trigger on_insert
-after insert on task_12.hub_table
+before insert on task_12.hub_table
 for each row
-execute function handle_hub_table_insert();
+execute function task_12.handle_hub_table_insert();

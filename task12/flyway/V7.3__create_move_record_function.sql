@@ -1,4 +1,4 @@
-create or replace function move_record_to_another_partition()
+create or replace function task_12.move_record_to_another_partition()
     returns trigger
     language plpgsql as
 $func$
