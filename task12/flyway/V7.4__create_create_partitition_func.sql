@@ -9,6 +9,7 @@ $func$
         command_text := format('
             create table task_12.%s 
             ( 
+                primary key (id),
                 check (id %% 10 = %s)
             ) 
             inherits (task_12.hub_table);',
