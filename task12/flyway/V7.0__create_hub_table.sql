@@ -3,6 +3,6 @@ create schema task_12;
 
 create table task_12.hub_table
 (
-    id serial primary key,
+    id int primary key,
     text_value varchar(256)
 );
