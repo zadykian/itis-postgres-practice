@@ -12,7 +12,7 @@ select
     90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
     concat('some_text_value', generate_series)
 from
-    generate_series(1, 10);
+    generate_series(1, 1000000);
 
 insert into task_10.varchar_first_table
 select 
