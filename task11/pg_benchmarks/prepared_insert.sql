@@ -1,4 +1,7 @@
 begin;
+
+    set plan_cache_mode to :prepared_mode;
+
     prepare insert_into_table(int, varchar(128)) as
     insert into task_11.prepared_table (id, name) values ($1, $2);
 
