@@ -3,7 +3,8 @@ create function task_13.insert_into_view()
     language plpgsql as
 $func$
     begin
-
+        insert into task_13.underlying_table (typename, value)
+        values (new.typename, new.value);
     end
 $func$;
 
