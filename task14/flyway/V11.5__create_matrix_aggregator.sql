@@ -12,6 +12,16 @@ $func$
         result_matrix numeric[][];
         single_row numeric[];
     begin
+        if (left_matrix = '{}')
+        then
+            return right_matrix;
+        end if;
+
+        if (right_matrix = '{}')
+        then
+            return left_matrix;
+        end if;
+
         if (first_dimension != array_length(right_matrix, 1)
             or second_dimension != array_length(right_matrix, 2))
         then
@@ -25,9 +35,25 @@ $func$
             loop
                 single_row = single_row || (left_matrix[i][j] + right_matrix[i][j])::numeric;
             end loop;
-            result_matrix = result_matrix || single_row;
+            result_matrix = result_matrix || array[single_row];
         end loop;
 
         return result_matrix;
     end;
 $func$;
+
+create aggregate sum(numeric[][])
+(
+    initcond = '{}',
+    stype = numeric[][],
+    sfunc = sum_matrices
+);
+
+create aggregate sum_parallel(numeric[][])
+(
+    initcond = '{}',
+    stype = numeric[][],
+    sfunc = sum_matrices,
+    parallel = safe,
+    combinefunc = sum_matrices
+);
