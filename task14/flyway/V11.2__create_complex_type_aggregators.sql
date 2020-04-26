@@ -7,8 +7,8 @@ create function add_complex_numbers(left_number complex_number, right_number com
     language plpgsql as
 $func$
     declare
-        result_real_part real;
-        result_imaginary_part real;
+        result_real_part double precision;
+        result_imaginary_part double precision;
     begin
         if (left_number is null)
         then
@@ -40,8 +40,8 @@ create function subtract_complex_numbers(left_number complex_number, right_numbe
     language plpgsql as
 $func$
     declare
-        result_real_part real;
-        result_imaginary_part real;
+        result_real_part double precision;
+        result_imaginary_part double precision;
     begin
         if (left_number is null)
         then
@@ -73,8 +73,8 @@ create function multiply_complex_numbers(left_number complex_number, right_numbe
     language plpgsql as
 $func$
     declare
-        result_real_part real;
-        result_imaginary_part real;
+        result_real_part double precision;
+        result_imaginary_part double precision;
     begin
         if (left_number is null)
         then
@@ -112,8 +112,8 @@ create function divide_complex_numbers(left_number complex_number, right_number 
     language plpgsql as
 $func$
     declare
-        result_real_part real;
-        result_imaginary_part real;
+        result_real_part double precision;
+        result_imaginary_part double precision;
     begin
         if (left_number is null)
         then

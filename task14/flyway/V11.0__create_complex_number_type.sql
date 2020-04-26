@@ -4,6 +4,6 @@ set search_path to task_14;
 
 create type complex_number as
 (
-    real_part real,
-    imaginary_part real
+    real_part double precision,
+    imaginary_part double precision
 );
