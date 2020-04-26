@@ -1,6 +1,6 @@
 set search_path to task_14;
 
--- add operator
+-- add aggregator
 
 create function add_complex_numbers(left_number complex_number, right_number complex_number)
     returns complex_number
@@ -26,12 +26,14 @@ $func$
     end
 $func$;
 
-create operator +(
-    leftarg = complex_number,
-    rightarg = complex_number,
-    function = add_complex_numbers);
+create aggregate sum(complex_number)
+(
+    initcond = '(0, 0)',
+    stype = complex_number,
+    sfunc = add_complex_numbers
+);
 
--- subtract operator
+-- subtract aggregator
 
 create function subtract_complex_numbers(left_number complex_number, right_number complex_number)
     returns complex_number
@@ -57,12 +59,14 @@ $func$
     end
 $func$;
 
-create operator -(
-    leftarg = complex_number,
-    rightarg = complex_number,
-    function = subtract_complex_numbers);
+create aggregate subtract(complex_number)
+(
+    initcond = '(0, 0)',
+    stype = complex_number,
+    sfunc = subtract_complex_numbers
+);
 
--- multiply operator
+-- multiply aggregator
 
 create function multiply_complex_numbers(left_number complex_number, right_number complex_number)
     returns complex_number
@@ -94,12 +98,14 @@ $func$
     end
 $func$;
 
-create operator *(
-    leftarg = complex_number,
-    rightarg = complex_number,
-    function = multiply_complex_numbers);
+create aggregate multiply(complex_number)
+(
+    initcond = '(1, 1)',
+    stype = complex_number,
+    sfunc = multiply_complex_numbers
+);
 
--- divide operator
+-- divide aggregator
 
 create function divide_complex_numbers(left_number complex_number, right_number complex_number)
     returns complex_number
@@ -133,7 +139,9 @@ $func$
     end
 $func$;
 
-create operator /(
-    leftarg = complex_number,
-    rightarg = complex_number,
-    function = divide_complex_numbers);
+create aggregate divide(complex_number)
+(
+    initcond = '(1, 1)',
+    stype = complex_number,
+    sfunc = divide_complex_numbers
+);
