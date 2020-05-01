@@ -12,6 +12,7 @@ options+="--user=zadykian "
 options+="--progress=60 "
 
 options+="--client=10 "
+options+="--connect "
 options+="--time=300 "
 
 pgbench $options "dbname=postgres sslmode=$1 sslrootcert=root.crt sslcert=postgresql.crt sslkey=postgresql.key"
