@@ -12,7 +12,7 @@ options+="--user=postgres "
 
 options+="--file=select_benchmark.sql "
 options+="--no-vacuum "
-options+="--define=table_name=$1"
+options+="--define=table_name=$1_test_table"
 
 options+="--time=300 "
 options+="--progress=60 "
