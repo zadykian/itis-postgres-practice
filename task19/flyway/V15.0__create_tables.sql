@@ -10,7 +10,7 @@ create table btree_test_table
     content varchar(512)
 );
 
-create index on btree_test_table using btree (content);
+create index on btree_test_table using btree (content varchar_pattern_ops);
 
 create table gin_test_table
 (
