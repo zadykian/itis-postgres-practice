@@ -1,5 +1,5 @@
 begin;
     select *
-    from :table_name
+    from task_19.:table_name
     where content like 'YwOeHXtP%';
 end;
