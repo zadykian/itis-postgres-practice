@@ -61,7 +61,7 @@ $func$
 
         truncate table jsonb_test_table;
         insert into jsonb_test_table(attributes)
-        select generate_json_value(pairs_count)
+        select generate_json_value(seq_value, pairs_count)
         from generate_series(1, 100000) as seq_value;
 
         truncate table jsonb_test_table_gin;
