@@ -7,7 +7,7 @@ create function generate_hstore_value(start_index int, pairs_count int)
 $func$
     declare key_value_pairs text[];
     begin
-        for index in start_index..(start_index + pairs_count)
+        for index in start_index..(start_index + pairs_count - 1)
         loop
             key_value_pairs = array_append(key_value_pairs, format('key_%s => value_%s', index, index));
         end loop;
@@ -23,7 +23,7 @@ create function generate_json_value(start_index int, pairs_count int)
 $func$
     declare key_value_pairs text[];
     begin
-        for index in start_index..(start_index + pairs_count)
+        for index in start_index..(start_index + pairs_count - 1)
         loop
             key_value_pairs = array_append(key_value_pairs, format('"key_%s": "value_%s"', index, index));
         end loop;
