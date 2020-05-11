@@ -44,3 +44,11 @@ create table jsonb_test_table_gin
 );
 
 create index on jsonb_test_table_gin using gin (attributes);
+
+create table jsonb_test_table_gin_path_ops
+(
+    id serial primary key,
+    attributes jsonb not null
+);
+
+create index on jsonb_test_table_gin using gin (attributes jsonb_path_ops);

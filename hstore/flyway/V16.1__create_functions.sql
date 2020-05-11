@@ -16,7 +16,7 @@ $func$
     end
 $func$;
 
-create generate_json_value(pairs_count int)
+create function generate_json_value(pairs_count int)
     returns json
     immutable
     language plpgsql as
