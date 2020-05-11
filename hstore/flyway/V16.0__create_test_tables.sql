@@ -51,4 +51,4 @@ create table jsonb_test_table_gin_path_ops
     attributes jsonb not null
 );
 
-create index on jsonb_test_table_gin using gin (attributes jsonb_path_ops);
+create index on jsonb_test_table_gin_path_ops using gin (attributes jsonb_path_ops);
