@@ -9,6 +9,22 @@ create table hstore_test_table
     attributes hstore not null
 );
 
+create table hstore_test_table_gin
+(
+    id serial primary key,
+    attributes hstore not null
+);
+
+create index on hstore_test_table_gin using gin (attributes);
+
+create table hstore_test_table_gist
+(
+    id serial primary key,
+    attributes hstore not null
+);
+
+create index on hstore_test_table_gist using gist (attributes);
+
 create table json_test_table
 (
     id serial primary key,
@@ -20,3 +36,11 @@ create table jsonb_test_table
     id serial primary key,
     attributes jsonb not null
 );
+
+create table jsonb_test_table_gin
+(
+    id serial primary key,
+    attributes jsonb not null
+);
+
+create index on jsonb_test_table_gin using gin (attributes);
