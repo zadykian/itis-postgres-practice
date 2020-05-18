@@ -1,5 +1,6 @@
 create or replace function task_21.sql_function(double precision left_bound)
     returns setof task_21.functions_test_table
+    volatile
     language sql as
 $func$
     begin
@@ -16,6 +17,7 @@ $func$;
 
 create or replace function task_21.plpgsql_function(double precision left_bound)
     returns setof task_21.functions_test_table
+    volatile
     language plpgsql as
 $func$
     begin
