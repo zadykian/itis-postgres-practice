@@ -8,7 +8,7 @@ create table task_21.functions_test_table
     double_column double precision not null
 );
 
-insert into task_21.functions_test_table
+insert into task_21.functions_test_table (varchar_column, double_column)
 select
     concat('varchar_value_', seq_number),
     random() * 10

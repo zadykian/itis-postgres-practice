@@ -10,9 +10,8 @@ options+="--host=advanced-rds-pg.csx2xlwomohu.us-east-1.rds.amazonaws.com "
 options+="--port=5432 "
 options+="--user=postgres "
 
-options+="--file=function_benchmark.sql "
+options+="--file=$1_benchmark.sql "
 options+="--no-vacuum "
-options+="--define=language=$1 "
 
 options+="--client=10 "
 options+="--time=300 "
