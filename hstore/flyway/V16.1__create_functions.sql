@@ -1,6 +1,6 @@
 set search_path to hstore_benchmarks;
 
-create function generate_hstore_value(start_index int, pairs_count int)
+create or replace function generate_hstore_value(start_index int, pairs_count int)
     returns hstore
     immutable
     language plpgsql as
@@ -16,7 +16,7 @@ $func$
     end
 $func$;
 
-create function generate_json_value(start_index int, pairs_count int)
+create or replace function generate_json_value(start_index int, pairs_count int)
     returns json
     immutable
     language plpgsql as
@@ -32,7 +32,7 @@ $func$
     end
 $func$;
 
-create function insert_into_test_tables(pairs_count int)
+create or replace function insert_into_test_tables(pairs_count int)
     returns void
     language plpgsql as
 $func$
